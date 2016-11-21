@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+<head><title>EfficientBrowsing</title>
+    <style>
+        /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 100px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            position: relative;
+            background-color: #fefefe;
+            margin: auto;
+            padding: 0;
+            border: 1px solid #888;
+            width: 80%;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+            -webkit-animation-name: animatetop;
+            -webkit-animation-duration: 0.4s;
+            animation-name: animatetop;
+            animation-duration: 0.4s
+        }
+
+        /* Add Animation */
+        @-webkit-keyframes animatetop {
+            from {top:-300px; opacity:0}
+            to {top:0; opacity:1}
+        }
+
+        @keyframes animatetop {
+            from {top:-300px; opacity:0}
+            to {top:0; opacity:1}
+        }
+
+        /* The Close Button */
+        .close {
+            color: white;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-header {
+            padding: 2px 16px;
+            background-color: #5cb85c;
+            color: white;
+        }
+
+        .modal-body {padding: 2px 16px;}
+
+        .modal-footer {
+            padding: 2px 16px;
+            background-color: #5cb85c;
+            color: white;
+        }
+    </style>
+
+
+</head>
+<body>
+
+<h1 align="center" style="font-size: 40px"> <b>EfficientBrowsing: Dashboard</b></h1>
+
+<br>
+
+<p align="center" style="font-size: 30px"> <b>Block or close websites</b></p>
+
+<table class=" table table-striped" id = "BLOCK_table1" width="50%">
+<!--Data of this table is saved in UserInputArray and obj.Stored_BlockedArray_key as chrome.sync.storage-->
+    <tr id="BLOCK_table1_firstRow">
+
+        <td id="kkk1"> Website Name: <input type="text" class = "ENTER_WEBSITE" id="BLOCK_ENTER_WEBSITE0" placeholder="facebook (NOT facebook.com)"></td>
+        <td> Time: <input type="number" class="BLOCK_Time" id="BLOCK_Time0" placeholder="30"> </td>
+        <td>Actions to be take after set time  <select name="cars" class="BLOCK_Action" id="BLOCK_Action0">
+            <option value="Remind me after given time and ask what to do">Remind after given time and ask what to do</option>
+            <option value="Block the website for rest of the day">Block the website for rest of the day</option>
+            <option value="Remind me after given time and ask what to do">Close all tab for this website</option>
+        </select></td>
+        <td>
+            <!--<img style="width:38px;height:38px" src="icon_2.png">-->
+        </td>
+        <td> <p id="BLOCK_table1_ID">0</p> </td>
+
+<!--click event of Save button is implemented in options.js-->
+        <td>  <button class="CLASS_BLOCK_save_individual">Save </button> </td>
+        <td>  <button class="CLASS_BLOCK_remove_individual">Remove </button> </td>
+    </tr>
+    <tr>
+
+        <td> Website Name: <input type="text" id="BLOCK_ENTER_WEBSITE1"><br> </td>
+        <td> Time: <input type="number" id="BLOCK_Time1"><br> </td>
+        <td>Actions to be take after set time  <select name="cars" id="BLOCK_Action1">
+            <option value="Remind me after given time and ask what to do">Remind after given time and ask what to do</option>
+            <option value="Block the website for rest of the day">Block the website for rest of the day</option>
+            <option value="Remind me after given time and ask what to do">Close all tab for this website</option>
+        </select></td>
+        <td>
+            <!--<img style="width:38px;height:38px" src="icon_2.png">-->
+        </td>
+        <td> <p>1</p> </td>
+
+        <!--click event of Save button is implemented in options.js-->
+        <td>  <button class="CLASS_BLOCK_save_individual">Save </button> </td>
+        <td>  <button class="CLASS_BLOCK_remove_individual">Remove </button> </td>
+    </tr>
+    <tr>
+
+        <td> Website Name: <input type="text" id="BLOCK_ENTER_WEBSITE2"><br> </td>
+        <td> Time: <input type="number" id="BLOCK_Time2"><br> </td>
+        <td>Actions to be take after set time  <select name="cars" id="BLOCK_Action2">
+            <option value="Remind me after given time and ask what to do">Remind after given time and ask what to do</option>
+            <option value="Block the website for rest of the day">Block the website for rest of the day</option>
+            <option value="Remind me after given time and ask what to do">Close all tab for this website</option>
+        </select></td>
+        <td>
+            <!--<img style="width:38px;height:38px" src="icon_2.png">-->
+        </td>
+        <td> <p>2</p> </td>
+
+        <!--click event of Save button is implemented in options.js-->
+        <td>  <button class="CLASS_BLOCK_save_individual">Save </button> </td>
+        <td>  <button class="CLASS_BLOCK_remove_individual">Remove </button> </td>
+    </tr>
+
+</table>
+<button class="CLASS_BLOCK_Add_Row">Add another website in blocklist </button>
+<button id="BLOCK_save">Save </button>
+<p align="center" style="font-size: 30px"> <b>Set Reminder</b></p>
+
+<table class=" table table-striped" id = "Reminder_table" width="50%">
+    <!--data of this table :: obj.Stored_ReminderArray_key : stores UserReminderArray, which
+     saves data of block website array: table(id="BLOCK_table1")-->
+    <tr>
+        <td> Reminder Text (optional) </td>
+        <td> Action </td>
+        <td> Time(minutes) </td>
+        <td> </td>
+        <td> Time(Set in clock) </td>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+
+    </tr>
+    <tr>
+        <td> <input type="text" class="ReminderText" id="ReminderText0" placeholder="Take rest row!"></td>
+
+        <td><select class="ReminderAction" id="ReminderAction0">
+            <option value="Block the website for rest of the day">Just once</option>
+            <option value="Remind me after given time and ask what to do">Every</option>
+
+
+        </select></td>
+
+        <td>
+            <select class="ReminderTimer" id="ReminderTimer0">
+                <option value="0">set a Time</option>
+                <option value="5">5 Minutes</option>
+                <option value="10">10 Minutes</option>
+                <option value="15">15 Minutes</option>
+                <option value="30">30 Minutes</option>
+                <option value="60">1 Hour </option>
+            </select>
+        </td>
+
+
+
+        <td> OR </td>
+
+
+        <td><input name="usr_time" type="time" class="ReminderClock" id="ReminderClock0"> </td>
+        <td> <p class="ReminderID">0</p> </td>
+
+        <!--onclick of set button is implemented in options_reminder.js-->
+        <td><button class= "CLASS_REMINDER_save_individual" id="ReminderButton0">Set </button></td>
+        <td> <button class= "CLASS_REMINDER_Clear_individual" id="ReminderButtonClear0">Clear </button> </td>
+    </tr>
+
+    <tr>
+        <td> <input type="text" class="ReminderText" id="ReminderText1" placeholder="Take rest row!"></td>
+
+        <td><select name="cars" class="ReminderAction" id="ReminderAction1">
+            <option value="Block the website for rest of the day">Just once</option>
+            <option value="Remind me after given time and ask what to do">Every</option>
+
+
+        </select></td>
+        <td>
+            <select class="ReminderTimer" id="ReminderTimer1">
+                <option value="0">set a Time</option>
+                <option value="5">5 Minutes</option>
+                <option value="10">10 Minutes</option>
+                <option value="15">15 Minutes</option>
+                <option value="30">30 Minutes</option>
+                <option value="60">1 Hour </option>
+            </select>
+        </td>
+
+        <td> OR </td>
+
+        <td ><input name="usr_time" type="time" class="ReminderClock" id="ReminderClock1"> </td>
+        <td> <p class="ReminderID">1</p> </td>
+
+        <!--onclick of set button is implemented in options_reminder.js-->
+        <td ><button class= "CLASS_REMINDER_save_individual" id="ReminderButton1">Set </button></td>
+        <td> <button class= "CLASS_REMINDER_Clear_individual" id="ReminderButtonClear1">Clear </button> </td>
+    </tr>
+
+    <tr>
+        <td > <input type="text" class="ReminderText" id="ReminderText2" placeholder="Take rest row!"></td>
+
+        <td><select name="cars" class="ReminderAction" id="ReminderAction2">
+            <option value="Block the website for rest of the day">Just once</option>
+            <option value="Remind me after given time and ask what to do">Every</option>
+
+
+        </select></td>
+
+        <td>
+            <select class="ReminderTimer" id="ReminderTimer2">
+                <option value="0">set a Time</option>
+                <option value="5">5 Minutes</option>
+                <option value="10">10 Minutes</option>
+                <option value="15">15 Minutes</option>
+                <option value="30">30 Minutes</option>
+                <option value="60">1 Hour </option>
+            </select>
+        </td>
+
+        <td> OR </td>
+
+
+        <td><input name="usr_time" type="time" class="ReminderClock" id="ReminderClock2"> </td>
+        <td> <p class="ReminderID">2</p> </td>
+
+        <!--onclick of set button is implemented in options_reminder.js-->
+        <td><button class= "CLASS_REMINDER_save_individual" id="ReminderButton2">Set </button></td>
+        <td> <button class= "CLASS_REMINDER_Clear_individual" id="ReminderButtonClear2">Clear </button> </td>
+    </tr>
+
+</table>
+<!--<button class="CLASS_Reminder_Add_Row" >Add a new reminder</button>-->
+<!--<button >Set All </button>-->
+
+<p align="center" style="font-size: 30px"> <b>SUMMERY OF YOUR BROWSING</b></p>
+
+<select align = "center" name="cars">
+    <option value="Block the website for rest of the day">Today</option>
+    <option value="Remind me after given time and ask what to do">Yesterday</option>
+    <option value="Remind me after given time and ask what to do">Till date</option>
+    <option value="Remind me after given time and ask what to do">Set a date</option>
+</select>
+
+<div id="donut-example" width = "50%"></div>
+<div id="donut-example1"></div>
+
+<table id="table_id" class="display" width="100%">
+    <thead>
+    <tr>
+        <th>Website Visited (Only current window)</th>
+        <th>Duration of Visit</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr id = "toBeDeleted">
+        <td>New Tab</td>
+        <td>Ignored</td>
+    </tr>
+
+    </tbody>
+</table>
+<!--<button> Clear all of my browsing summery</button>-->
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <div id="myfirstchart_text" class="modal-header">
+            <span class="close">×</span>
+            <h2>Modal Header</h2>
+        </div>
+        <!--<div id="myfirstchart" class="modal-body">-->
+        <div id="myfirstchart" class="modal-body" style="height: 250px;"></div>
+            <!--<p>Some text in the Modal Body</p>-->
+            <!--<p>Some other text...</p>-->
+        </div>
+        <!--<div class="modal-footer">-->
+            <!--&lt;!&ndash;<h3>Modal Footer</h3>&ndash;&gt;-->
+        <!--</div>-->
+    </div>
+
+</div>
+
+
+
+<!--POP UP END-->
+<link rel="stylesheet" href="morris.css">
+<link rel="stylesheet" href="jquery.dataTables.min.css">
+<link rel="stylesheet" href="bootstrap.min.css">
+<script src="jquery-3.1.1.min.js"></script>
+<script src="raphael.min.js"></script>
+
+<script src="morris.min.js"></script>
+
+<script src="options.js"></script>
+<script src="options_Reminder.js"></script>
+<script src="options_draw_graph.js"></script>
+<script src="jquery.dataTables.min.js"></script>
+<script src="bootstrap.min.js"></script>
+
+
+
+</body>
+</html>
