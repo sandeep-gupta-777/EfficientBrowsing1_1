@@ -39,7 +39,7 @@
 	3.URLarray:Contains website name along with startTime,endTime,time 
 	Example: URLarray[0] = {endTime:0,startTime:0,time:50.882500037550926,website:"cisco"}
 
-	4.blockArray = contains data of block table(see in options.html id="BLOCK_table1"). Draws data of table using key = obj.Stored_BlockedArray_key
+	4.blockArray = contains data of block table(see in options.html id="BLOCK_table1"). Draws data of table using key = obj.Stored_BlockedArray_key //same as UserInputArray in options.js
 
 **background_history.js**	
 
@@ -52,7 +52,7 @@
 
 **options.js**
 
-	1.UserInputArray : save data from block website table
+	1.UserInputArray : save data from block website table // same as blockArray in background.js
 	2.rowDataArray
 
 **options_draw_graph.js**
