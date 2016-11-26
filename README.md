@@ -48,7 +48,7 @@
 
 **background_reminder.js**
 
-	1.UserReminderArray_background: Saves data of reminder table. 
+	1.UserReminderArray_background: Saves data of reminder table. //same as UserReminderArray from options_reminder.js
 
 **options.js**
 
@@ -64,4 +64,4 @@
 
 **options_Reminder.js**
 	
-	1. UserReminderArray
+	1. UserReminderArray //same as UserReminderArray_background from background_reminder.js
